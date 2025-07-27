@@ -144,6 +144,14 @@
             font-size: 1.2em;
         }
         
+        .insight-card.highlight h4 {
+            color: #28A745;
+        }
+        
+        .insight-card.lowlight h4 {
+            color: #DC3545;
+        }
+        
         .insight-list {
             list-style: none;
         }
@@ -268,6 +276,195 @@
                 <div class="chart-wrapper">
                     <canvas id="cityChart"></canvas>
                 </div>
+            </div>
+        </div>
+
+        <!-- Insights Section -->
+        <div class="insights-section">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">✨ Key Insights & Analysis</h2>
+            <div class="insights-grid">
+                <div class="insight-card" style="border-left-color: #28A745; background: #F8FFF9;">
+                    <h4>✨ HIGHLIGHTS (Positive Insights)</h4>
+                    <ul class="insight-list">
+                        <li><strong>Strong Cost Control:</strong> 55.6% cases are low-risk (≤500K VNĐ)</li>
+                        <li><strong>High Insurance Purchase Rate:</strong> 89.9% customers buy insurance coverage</li>
+                        <li><strong>Reasonable Distribution:</strong> Median < Mean indicates most cases are reasonable</li>
+                        <li><strong>Improving Trends:</strong> June shows better performance vs early months</li>
+                    </ul>
+                </div>
+                
+                <div class="insight-card" style="border-left-color: #DC3545; background: #FFF5F5;">
+                    <h4>⚠️ LOWLIGHTS (Areas of Concern)</h4>
+                    <ul class="insight-list">
+                        <li><strong>High-Risk Concentration:</strong> 9 cases (9.1%) account for 42.8% of total cost</li>
+                        <li><strong>Insurance Gap Issues:</strong> 34.8% insurance failures + 10.1% no insurance cases</li>
+                        <li><strong>AhaMove Liability:</strong> 100% compensation cost regardless of insurance status</li>
+                        <li><strong>March Peak:</strong> Highest monthly concentration shows seasonal risk pattern</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Insights Section -->
+        <div class="insights-section">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">🔍 Detailed Analysis</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h4>📈 Monthly Trends Analysis</h4>
+                    <ul class="insight-list">
+                        <li><strong>Peak Month:</strong> March with 22 cases (22.2%) and 15.7M VNĐ</li>
+                        <li><strong>Best Performance:</strong> June with lowest average (589K VNĐ)</li>
+                        <li><strong>Trend Direction:</strong> Slight improvement in Q2 vs Q1</li>
+                        <li><strong>Seasonal Pattern:</strong> Higher activity in Q1, stabilizing in Q2</li>
+                    </ul>
+                </div>
+                
+                <div class="insight-card">
+                    <h4>🗺️ Regional Analysis</h4>
+                    <ul class="insight-list">
+                        <li><strong>HCM:</strong> 45 cases (45.5%) - Avg: 701K VNĐ (highest)</li>
+                        <li><strong>Hà Nội:</strong> 32 cases (32.3%) - Avg: 598K VNĐ</li>
+                        <li><strong>Đà Nẵng:</strong> 12 cases (12.1%) - Avg: 625K VNĐ</li>
+                        <li><strong>Performance:</strong> HCM shows highest average compensation</li>
+                    </ul>
+                </div>
+                
+                <div class="insight-card">
+                    <h4>📦 Order Classification</h4>
+                    <ul class="insight-list">
+                        <li><strong>GHLT Orders:</strong> 67 cases (67.7%) - Higher risk profile</li>
+                        <li><strong>Regular Orders:</strong> 32 cases (32.3%) - Standard risk</li>
+                        <li><strong>Insurance Correlation:</strong> GHLT orders have higher compensation</li>
+                        <li><strong>Risk Factor:</strong> Long-distance increases damage probability</li>
+                    </ul>
+                </div>
+                
+                <div class="insight-card">
+                    <h4>🎯 Top Compensation Reasons</h4>
+                    <ul class="insight-list">
+                        <li><strong>Mất hàng:</strong> 24 cases (24.2%) - Top reason</li>
+                        <li><strong>Hỏng hàng:</strong> 18 cases (18.2%) - Handling issues</li>
+                        <li><strong>Thiếu hàng:</strong> 15 cases (15.2%) - Inventory problems</li>
+                        <li><strong>Focus Areas:</strong> Package security and handling training</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategic Actions Section -->
+        <div class="insights-section">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #2B4C85;">🚀 Strategic Actions & Recommendations</h2>
+            <div class="insights-grid">
+                <div class="insight-card" style="border-left-color: #DC3545; background: #FFF5F5;">
+                    <h4 style="color: #DC3545;">🎯 IMMEDIATE ACTIONS (Next 30 Days)</h4>
+                    <ul class="insight-list">
+                        <li><strong>High-Risk Audit:</strong> Review all 9 cases >1M VNĐ for patterns</li>
+                        <li><strong>Approval Workflow:</strong> Implement manager approval for >500K VNĐ</li>
+                        <li><strong>Weekly Tracking:</strong> Create dashboard with monthly trends</li>
+                        <li><strong>Insurance Review:</strong> Assess adequacy for top claim types</li>
+                    </ul>
+                </div>
+                
+                <div class="insight-card" style="border-left-color: #FF8C42; background: #FFF8F0;">
+                    <h4 style="color: #FF8C42;">🔧 PROCESS IMPROVEMENTS (Next 90 Days)</h4>
+                    <ul class="insight-list">
+                        <li><strong>Documentation Standards:</strong> Tier requirements by compensation amount</li>
+                        <li><strong>Escalation Matrix:</strong> >500K → Team Lead, >1M → Manager, >2M → Director</li>
+                        <li><strong>Prevention Programs:</strong> Address seasonal peaks and top reasons (mất hàng, hỏng hàng)</li>
+                        <li><strong>Seasonal Planning:</strong> Prepare for higher risk periods based on monthly patterns</li>
+                    </ul>
+                </div>
+                
+                <div class="insight-card" style="border-left-color: #28A745; background: #F8FFF9;">
+                    <h4 style="color: #28A745;">📊 MONITORING & CONTROL (Ongoing)</h4>
+                    <ul class="insight-list">
+                        <li><strong>Weekly:</strong> Review all high-value cases (>1M VNĐ)</li>
+                        <li><strong>Monthly:</strong> Analyze trends, seasonal patterns, and regional performance</li>
+                        <li><strong>Quarterly:</strong> Insurance effectiveness analysis and customer education programs</li>
+                        <li><strong>Semi-Annual:</strong> Comprehensive policy review and insurance partner evaluation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cost Optimization Section -->
+        <div class="insights-section">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #2B4C85;">💰 Cost Optimization Targets</h2>
+            <div class="insights-grid">
+                <div class="insight-card" style="border-left-color: #28A745; background: #F8FFF9;">
+                    <h4 style="color: #28A745;">🎯 Financial Targets</h4>
+                    <ul class="insight-list">
+                        <li><strong>Reduce High-Risk Cases:</strong> From 9 to 4-5 cases (50% reduction)</li>
+                        <li><strong>Potential Monthly Savings:</strong> 2,700,000 VNĐ</li>
+                        <li><strong>Target Compensation Rate:</strong> <2% of total revenue</li>
+                        <li><strong>Target Coverage:</strong> >95% insurance purchase rate + <20% insurance failure rate</li>
+                    </ul>
+                </div>
+                
+                <div class="insight-card" style="border-left-color: #5B9BD5; background: #F0F8FF;">
+                    <h4 style="color: #5B9BD5;">📊 Performance KPIs</h4>
+                    <ul class="insight-list">
+                        <li><strong>🔴 Critical Alert:</strong> >3 cases >1M VNĐ per month</li>
+                        <li><strong>🟡 Warning Level:</strong> >40% medium-risk cases</li>
+                        <li><strong>🟢 Good Performance:</strong> >60% low-risk cases</li>
+                        <li><strong>📊 Overall Risk Score:</strong> Currently 1.53/3.0 (Target: <1.40)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Monthly Review Template -->
+        <div class="insights-section">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">📋 Monthly Review Template</h2>
+            <div class="insights-grid">
+                <div class="insight-card" style="border-left-color: #6C757D; background: #F8F9FA;">
+                    <h4 style="color: #6C757D;">📋 Key Metrics to Track</h4>
+                    <ul class="insight-list">
+                        <li><strong>1.</strong> Total compensation amount and case count</li>
+                        <li><strong>2.</strong> Risk distribution (Low/Medium/High) with monthly trends</li>
+                        <li><strong>3.</strong> Insurance purchase rate and failure rate analysis</li>
+                        <li><strong>4.</strong> Top 5 compensation reasons with insurance correlation</li>
+                        <li><strong>5.</strong> Regional performance vs benchmarks</li>
+                        <li><strong>6.</strong> High-risk case details and monthly evolution</li>
+                    </ul>
+                </div>
+                
+                <div class="insight-card" style="border-left-color: #DC3545; background: #FFF5F5;">
+                    <h4 style="color: #DC3545;">🚨 Red Flags to Monitor</h4>
+                    <ul class="insight-list">
+                        <li><strong>Average compensation >700K VNĐ</strong></li>
+                        <li><strong>>10% high-risk cases</strong></li>
+                        <li><strong>Insurance failure rate >35%</strong></li>
+                        <li><strong>Same reason >30% of cases</strong></li>
+                        <li><strong>Monthly increase >20% vs previous month</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conclusion Section -->
+        <div class="insights-section">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">🎯 Executive Summary</h2>
+            <div class="insight-card" style="border-left-color: #2B4C85; background: #F0F4FF;">
+                <p style="margin-bottom: 15px; line-height: 1.6;">
+                    The CS compensation data shows <strong>mixed performance</strong> with good overall control but concerning high-risk concentrations. 
+                    The <strong>89.9% insurance purchase rate</strong> is positive, but <strong>34.8% insurance failure cases</strong> need attention.
+                </p>
+                
+                <h4 style="color: #DC3545; margin-bottom: 15px;">🎯 Priority Focus</h4>
+                <p style="margin-bottom: 15px; line-height: 1.6;">
+                    The 9 high-risk cases accounting for 42.8% of costs represent the biggest optimization opportunity. 
+                    Key issue is that <strong>AhaMove bears 100% compensation cost</strong> whether customers buy insurance or not - 
+                    when insurance fails to pay or customers don't purchase coverage.
+                </p>
+                
+                <h4 style="color: #28A745; margin-bottom: 15px;">✅ Next Steps</h4>
+                <ol style="margin-left: 20px; line-height: 1.6;">
+                    <li><strong>Immediate implementation</strong> of >500K approval workflow</li>
+                    <li><strong>Detailed analysis</strong> of the 9 high-risk cases</li>
+                    <li><strong>Enhancement</strong> of insurance effectiveness and customer education</li>
+                    <li><strong>Monthly review cycle</strong> establishment with insurance performance tracking</li>
+                </ol>
             </div>
         </div>
 
