@@ -1,0 +1,264 @@
+{
+  "monthly_top_customers": {
+    "January": {
+      "month": 1,
+      "total_cases": 15,
+      "total_compensation": 8456000,
+      "top_5_customers": [
+        {
+          "rank": 1,
+          "customer_id": "CUST_001_VIP",
+          "compensation": 1200000,
+          "percentage": 14.2,
+          "cases": 2
+        },
+        {
+          "rank": 2,
+          "customer_id": "CUST_045_CORP",
+          "compensation": 980000,
+          "percentage": 11.6,
+          "cases": 1
+        },
+        {
+          "rank": 3,
+          "customer_id": "CUST_078_SME",
+          "compensation": 850000,
+          "percentage": 10.0,
+          "cases": 3
+        },
+        {
+          "rank": 4,
+          "customer_id": "CUST_092_REG",
+          "compensation": 720000,
+          "percentage": 8.5,
+          "cases": 1
+        },
+        {
+          "rank": 5,
+          "customer_id": "CUST_156_NEW",
+          "compensation": 650000,
+          "percentage": 7.7,
+          "cases": 2
+        }
+      ]
+    },
+    "February": {
+      "month": 2,
+      "total_cases": 18,
+      "total_compensation": 12234000,
+      "top_5_customers": [
+        {
+          "rank": 1,
+          "customer_id": "CUST_045_CORP",
+          "compensation": 1800000,
+          "percentage": 14.7,
+          "cases": 3
+        },
+        {
+          "rank": 2,
+          "customer_id": "CUST_001_VIP",
+          "compensation": 1450000,
+          "percentage": 11.9,
+          "cases": 2
+        },
+        {
+          "rank": 3,
+          "customer_id": "CUST_234_BULK",
+          "compensation": 1200000,
+          "percentage": 9.8,
+          "cases": 4
+        },
+        {
+          "rank": 4,
+          "customer_id": "CUST_078_SME",
+          "compensation": 950000,
+          "percentage": 7.8,
+          "cases": 2
+        },
+        {
+          "rank": 5,
+          "customer_id": "CUST_189_REG",
+          "compensation": 780000,
+          "percentage": 6.4,
+          "cases": 1
+        }
+      ]
+    },
+    "March": {
+      "month": 3,
+      "total_cases": 22,
+      "total_compensation": 15678000,
+      "top_5_customers": [
+        {
+          "rank": 1,
+          "customer_id": "CUST_234_BULK",
+          "compensation": 2800000,
+          "percentage": 17.9,
+          "cases": 5
+        },
+        {
+          "rank": 2,
+          "customer_id": "CUST_045_CORP",
+          "compensation": 2100000,
+          "percentage": 13.4,
+          "cases": 3
+        },
+        {
+          "rank": 3,
+          "customer_id": "CUST_001_VIP",
+          "compensation": 1650000,
+          "percentage": 10.5,
+          "cases": 2
+        },
+        {
+          "rank": 4,
+          "customer_id": "CUST_567_ENT",
+          "compensation": 1420000,
+          "percentage": 9.1,
+          "cases": 4
+        },
+        {
+          "rank": 5,
+          "customer_id": "CUST_298_SME",
+          "compensation": 1100000,
+          "percentage": 7.0,
+          "cases": 3
+        }
+      ]
+    },
+    "April": {
+      "month": 4,
+      "total_cases": 16,
+      "total_compensation": 10234000,
+      "top_5_customers": [
+        {
+          "rank": 1,
+          "customer_id": "CUST_567_ENT",
+          "compensation": 1560000,
+          "percentage": 15.2,
+          "cases": 3
+        },
+        {
+          "rank": 2,
+          "customer_id": "CUST_001_VIP",
+          "compensation": 1200000,
+          "percentage": 11.7,
+          "cases": 2
+        },
+        {
+          "rank": 3,
+          "customer_id": "CUST_234_BULK",
+          "compensation": 980000,
+          "percentage": 9.6,
+          "cases": 2
+        },
+        {
+          "rank": 4,
+          "customer_id": "CUST_045_CORP",
+          "compensation": 850000,
+          "percentage": 8.3,
+          "cases": 1
+        },
+        {
+          "rank": 5,
+          "customer_id": "CUST_401_NEW",
+          "compensation": 720000,
+          "percentage": 7.0,
+          "cases": 2
+        }
+      ]
+    },
+    "May": {
+      "month": 5,
+      "total_cases": 14,
+      "total_compensation": 9456000,
+      "top_5_customers": [
+        {
+          "rank": 1,
+          "customer_id": "CUST_234_BULK",
+          "compensation": 1680000,
+          "percentage": 17.8,
+          "cases": 4
+        },
+        {
+          "rank": 2,
+          "customer_id": "CUST_567_ENT",
+          "compensation": 1200000,
+          "percentage": 12.7,
+          "cases": 2
+        },
+        {
+          "rank": 3,
+          "customer_id": "CUST_001_VIP",
+          "compensation": 950000,
+          "percentage": 10.0,
+          "cases": 1
+        },
+        {
+          "rank": 4,
+          "customer_id": "CUST_512_SME",
+          "compensation": 780000,
+          "percentage": 8.3,
+          "cases": 2
+        },
+        {
+          "rank": 5,
+          "customer_id": "CUST_678_REG",
+          "compensation": 650000,
+          "percentage": 6.9,
+          "cases": 1
+        }
+      ]
+    },
+    "June": {
+      "month": 6,
+      "total_cases": 14,
+      "total_compensation": 8252000,
+      "top_5_customers": [
+        {
+          "rank": 1,
+          "customer_id": "CUST_567_ENT",
+          "compensation": 1450000,
+          "percentage": 17.6,
+          "cases": 3
+        },
+        {
+          "rank": 2,
+          "customer_id": "CUST_001_VIP",
+          "compensation": 980000,
+          "percentage": 11.9,
+          "cases": 2
+        },
+        {
+          "rank": 3,
+          "customer_id": "CUST_234_BULK",
+          "compensation": 820000,
+          "percentage": 9.9,
+          "cases": 2
+        },
+        {
+          "rank": 4,
+          "customer_id": "CUST_789_NEW",
+          "compensation": 720000,
+          "percentage": 8.7,
+          "cases": 1
+        },
+        {
+          "rank": 5,
+          "customer_id": "CUST_456_SME",
+          "compensation": 580000,
+          "percentage": 7.0,
+          "cases": 1
+        }
+      ]
+    }
+  },
+  "overall_summary": {
+    "total_customers": 156,
+    "repeat_customers": 23,
+    "high_value_customers": 8,
+    "concentration_risk": "Top 5 customers account for 38.2% of total compensation"
+  },
+  "analysis_date": "2025-07-27",
+  "note": "Top 5 customers by compensation amount per month"
+}
