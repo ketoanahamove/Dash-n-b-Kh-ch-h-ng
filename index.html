@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS Compensation Analysis 2025 V2 - Interactive Report</title>
+    <title>CS Compensation Analysis 2025 V2</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -15,9 +14,8 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #2B4C85;
-            background: linear-gradient(135deg, #87CEEB 0%, #2B4C85 100%);
+            background: linear-gradient(135deg, #87CEEB 0%, #5B9BD5 100%);
+            color: #333;
             min-height: 100vh;
         }
         
@@ -28,30 +26,26 @@
         }
         
         .header {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
+            color: white;
+            margin-bottom: 30px;
         }
         
         .header h1 {
-            color: #2B4C85;
             font-size: 2.5em;
             margin-bottom: 10px;
-            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
-        .header .subtitle {
-            color: #FF8C42;
+        .subtitle {
             font-size: 1.2em;
-            margin-bottom: 20px;
+            opacity: 0.9;
+            margin-bottom: 10px;
         }
         
         .summary-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
@@ -60,28 +54,40 @@
             background: white;
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid transparent;
         }
         
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+        
+        .card.success {
+            border-color: #28A745;
+        }
+        
+        .card.info {
+            border-color: #5B9BD5;
+        }
+        
+        .card.warning {
+            border-color: #FF8C42;
         }
         
         .card h3 {
             color: #2B4C85;
+            margin-bottom: 15px;
             font-size: 1.1em;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
         
         .card .value {
-            font-size: 2.2em;
-            font-weight: 700;
-            color: #5B9BD5;
-            margin-bottom: 5px;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2B4C85;
+            margin: 10px 0;
         }
         
         .card .unit {
@@ -89,22 +95,10 @@
             font-size: 0.9em;
         }
         
-        .card.warning .value {
-            color: #DC3545;
-        }
-        
-        .card.success .value {
-            color: #28A745;
-        }
-        
-        .card.info .value {
-            color: #FF8C42;
-        }
-        
         .charts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 30px;
+            gap: 25px;
             margin-bottom: 30px;
         }
         
@@ -112,14 +106,14 @@
             background: white;
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
         
         .chart-container h3 {
-            color: #2B4C85;
-            margin-bottom: 20px;
-            font-size: 1.3em;
             text-align: center;
+            margin-bottom: 20px;
+            color: #2B4C85;
+            font-size: 1.3em;
         }
         
         .chart-wrapper {
@@ -128,47 +122,26 @@
         }
         
         .insights-section {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
         .insights-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
+            gap: 25px;
         }
         
         .insight-card {
-            background: #f8f9fa;
-            border-radius: 10px;
+            background: white;
+            border-radius: 15px;
             padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             border-left: 5px solid #5B9BD5;
-        }
-        
-        .insight-card.highlight {
-            border-left-color: #28A745;
-            background: #F8FFF9;
-        }
-        
-        .insight-card.lowlight {
-            border-left-color: #DC3545;
-            background: #FFF5F5;
         }
         
         .insight-card h4 {
             margin-bottom: 15px;
             font-size: 1.2em;
-        }
-        
-        .insight-card.highlight h4 {
-            color: #28A745;
-        }
-        
-        .insight-card.lowlight h4 {
-            color: #DC3545;
         }
         
         .insight-list {
@@ -189,91 +162,6 @@
             font-weight: bold;
         }
         
-        .customer-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            font-size: 0.9em;
-        }
-        
-        .customer-table th,
-        .customer-table td {
-            padding: 8px 12px;
-            border-bottom: 1px solid #E5E5E5;
-            text-align: left;
-        }
-        
-        .customer-table th {
-            background: #F8F9FA;
-            font-weight: 600;
-            color: #2B4C85;
-        }
-        
-        .customer-table .rank-col {
-            width: 40px;
-            text-align: center;
-            font-weight: bold;
-        }
-        
-        .customer-table .percentage-col {
-            text-align: right;
-            color: #FF8C42;
-            font-weight: 600;
-        }
-        
-        .customer-table .amount-col {
-            text-align: right;
-            font-weight: 600;
-        }
-        
-        .month-tab {
-            display: inline-block;
-            padding: 8px 16px;
-            margin: 0 5px 10px 0;
-            background: #F8F9FA;
-            border: 1px solid #DDD;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .month-tab.active {
-            background: #2B4C85;
-            color: white;
-            border-color: #2B4C85;
-        }
-        
-        .month-tab:hover {
-            background: #5B9BD5;
-            color: white;
-        }
-        
-        .customer-summary {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .summary-item {
-            background: #F8F9FA;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .summary-item .value {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #2B4C85;
-        }
-        
-        .summary-item .label {
-            font-size: 0.9em;
-            color: #6C757D;
-            margin-top: 5px;
-        }
-        
         .footer {
             text-align: center;
             color: white;
@@ -283,19 +171,15 @@
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
             .charts-grid {
                 grid-template-columns: 1fr;
             }
             
-            .insights-grid {
-                grid-template-columns: 1fr;
+            .header h1 {
+                font-size: 2em;
             }
             
-            .header h1 {
+            .card .value {
                 font-size: 2em;
             }
         }
@@ -340,27 +224,12 @@
                 <div class="value" id="coverage">89.9</div>
                 <div class="unit">%</div>
             </div>
-            <div class="card warning">
-                <h3>Insurance Failed</h3>
-                <div class="value">34.8</div>
-                <div class="unit">% of insured</div>
-            </div>
-            <div class="card warning">
-                <h3>No Insurance</h3>
-                <div class="value">10.1</div>
-                <div class="unit">% of total</div>
-            </div>
-            <div class="card warning">
-                <h3>AhaMove Liability</h3>
-                <div class="value">100</div>
-                <div class="unit">% cost</div>
-            </div>
         </div>
 
-        <!-- Charts -->
+        <!-- Charts Grid -->
         <div class="charts-grid">
             <div class="chart-container">
-                <h3>💰 Risk Distribution</h3>
+                <h3>🔥 Risk Distribution</h3>
                 <div class="chart-wrapper">
                     <canvas id="riskChart"></canvas>
                 </div>
@@ -400,223 +269,6 @@
                     <canvas id="cityChart"></canvas>
                 </div>
             </div>
-            
-            <div class="chart-container">
-                <h3>👥 Top 5 Customers by Month</h3>
-                <div class="chart-wrapper">
-                    <canvas id="topCustomersChart"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <!-- Top Customers Analysis Section -->
-        <div class="insights-section">
-            <h2 style="text-align: center; margin-bottom: 30px; color: #2B4C85;">👥 Top Customers Analysis</h2>
-            <div class="insights-grid">
-                <div class="insight-card" style="border-left-color: #2B4C85; background: #F0F4FF;">
-                    <h4 style="color: #2B4C85;">🏆 Customer Concentration Analysis</h4>
-                    <div id="customer-concentration-content">
-                        <p>Loading customer data...</p>
-                    </div>
-                </div>
-                
-                <div class="insight-card" style="border-left-color: #FF8C42; background: #FFF8F0;">
-                    <h4 style="color: #FF8C42;">📊 Monthly Top Customers Table</h4>
-                    <div id="monthly-customers-table">
-                        <p>Loading monthly analysis...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Insights Section -->
-        <div class="insights-section">
-            <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">📈 Key Insights</h2>
-            <div class="insights-grid">
-                <div class="insight-card highlight">
-                    <h4>✨ HIGHLIGHTS (Positive Insights)</h4>
-                    <ul class="insight-list">
-                        <li><strong>Strong Cost Control:</strong> 55.6% cases are low-risk (≤500K VNĐ)</li>
-                        <li><strong>High Insurance Purchase Rate:</strong> 89.9% customers buy insurance coverage</li>
-                        <li><strong>Reasonable Distribution:</strong> Median < Mean indicates most cases are reasonable</li>
-                        <li><strong>Improving Trends:</strong> June shows better performance vs early months</li>
-                    </ul>
-                </div>
-                
-                <div class="insight-card lowlight">
-                    <h4>⚠️ LOWLIGHTS (Areas of Concern)</h4>
-                    <ul class="insight-list">
-                        <li><strong>High-Risk Concentration:</strong> 9 cases (9.1%) account for 42.8% of total cost</li>
-                        <li><strong>Insurance Gap Issues:</strong> 34.8% insurance failures + 10.1% no insurance cases</li>
-                        <li><strong>AhaMove Liability:</strong> 100% compensation cost regardless of insurance status</li>
-                        <li><strong>March Peak:</strong> Highest monthly concentration shows seasonal risk pattern</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Detailed Insights Section -->
-        <div class="insights-section">
-            <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">🔍 Detailed Analysis</h2>
-            <div class="insights-grid">
-                <div class="insight-card">
-                    <h4>📈 Monthly Trends Analysis</h4>
-                    <ul class="insight-list">
-                        <li><strong>Peak Month:</strong> March with 22 cases (22.2%) and 15.7M VNĐ</li>
-                        <li><strong>Best Performance:</strong> June with lowest average (589K VNĐ)</li>
-                        <li><strong>Trend Direction:</strong> Slight improvement in Q2 vs Q1</li>
-                        <li><strong>Seasonal Pattern:</strong> Higher activity in Q1, stabilizing in Q2</li>
-                    </ul>
-                </div>
-                
-                <div class="insight-card">
-                    <h4>🗺️ Regional Analysis</h4>
-                    <ul class="insight-list">
-                        <li><strong>HCM:</strong> 45 cases (45.5%) - Avg: 701K VNĐ (highest)</li>
-                        <li><strong>Hà Nội:</strong> 32 cases (32.3%) - Avg: 598K VNĐ</li>
-                        <li><strong>Đà Nẵng:</strong> 12 cases (12.1%) - Avg: 625K VNĐ</li>
-                        <li><strong>Performance:</strong> HCM shows highest average compensation</li>
-                    </ul>
-                </div>
-                
-                <div class="insight-card">
-                    <h4>📦 Order Classification</h4>
-                    <ul class="insight-list">
-                        <li><strong>GHLT Orders:</strong> 67 cases (67.7%) - Higher complexity</li>
-                        <li><strong>Regular Orders:</strong> 32 cases (32.3%) - Standard processing</li>
-                        <li><strong>Risk Pattern:</strong> GHLT orders show higher compensation needs</li>
-                        <li><strong>Focus Area:</strong> GHLT process optimization required</li>
-                    </ul>
-                </div>
-                
-                <div class="insight-card">
-                    <h4>🎯 Risk Distribution Trends</h4>
-                    <ul class="insight-list">
-                        <li><strong>March Risk Peak:</strong> Low=15, Med=5, High=2 (highest medium risk)</li>
-                        <li><strong>June Improvement:</strong> Low=12, Med=1, High=1 (best performance)</li>
-                        <li><strong>Pattern:</strong> Medium risk cases fluctuate most</li>
-                        <li><strong>Stability:</strong> High-risk cases remain consistently low</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Strategic Actions Section -->
-        <div class="insights-section">
-            <h2 style="text-align: center; margin-bottom: 30px; color: #2B4C85;">🚀 Strategic Actions & Recommendations</h2>
-            <div class="insights-grid">
-                <div class="insight-card" style="border-left-color: #DC3545; background: #FFF5F5;">
-                    <h4 style="color: #DC3545;">🎯 IMMEDIATE ACTIONS (Next 30 Days)</h4>
-                    <ul class="insight-list">
-                        <li><strong>High-Risk Review:</strong> Audit all 9 cases >1M VNĐ for patterns</li>
-                        <li><strong>Approval Workflow:</strong> Implement manager approval for >500K VNĐ</li>
-                        <li><strong>Dashboard Setup:</strong> Create weekly tracking dashboard with monthly trends</li>
-                        <li><strong>Insurance Review:</strong> Assess insurance failure rate and no-insurance customer education</li>
-                    </ul>
-                </div>
-                
-                <div class="insight-card" style="border-left-color: #FF8C42; background: #FFF8F0;">
-                    <h4 style="color: #FF8C42;">🔧 PROCESS IMPROVEMENTS (Next 90 Days)</h4>
-                    <ul class="insight-list">
-                        <li><strong>Documentation Standards:</strong> Tier requirements by compensation amount</li>
-                        <li><strong>Escalation Matrix:</strong> >500K → Team Lead, >1M → Manager, >2M → Director</li>
-                        <li><strong>Prevention Programs:</strong> Address seasonal peaks and top reasons (mất hàng, hỏng hàng)</li>
-                        <li><strong>Seasonal Planning:</strong> Prepare for higher risk periods based on monthly patterns</li>
-                    </ul>
-                </div>
-                
-                <div class="insight-card" style="border-left-color: #28A745; background: #F8FFF9;">
-                    <h4 style="color: #28A745;">📊 MONITORING & CONTROL (Ongoing)</h4>
-                    <ul class="insight-list">
-                        <li><strong>Weekly:</strong> Review all high-value cases (>1M VNĐ)</li>
-                        <li><strong>Monthly:</strong> Analyze trends, seasonal patterns, and regional performance</li>
-                        <li><strong>Quarterly:</strong> Insurance effectiveness analysis and customer education programs</li>
-                        <li><strong>Semi-Annual:</strong> Comprehensive policy review and insurance partner evaluation</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Cost Optimization Section -->
-        <div class="insights-section">
-            <h2 style="text-align: center; margin-bottom: 30px; color: #2B4C85;">💰 Cost Optimization Targets</h2>
-            <div class="insights-grid">
-                <div class="insight-card" style="border-left-color: #28A745; background: #F8FFF9;">
-                    <h4 style="color: #28A745;">🎯 Financial Targets</h4>
-                    <ul class="insight-list">
-                        <li><strong>Reduce High-Risk Cases:</strong> From 9 to 4-5 cases (50% reduction)</li>
-                        <li><strong>Potential Monthly Savings:</strong> 2,700,000 VNĐ</li>
-                        <li><strong>Target Compensation Rate:</strong> <2% of total revenue</li>
-                        <li><strong>Target Coverage:</strong> >95% insurance purchase rate + <20% insurance failure rate</li>
-                    </ul>
-                </div>
-                
-                <div class="insight-card" style="border-left-color: #5B9BD5; background: #F0F8FF;">
-                    <h4 style="color: #5B9BD5;">📊 Performance KPIs</h4>
-                    <ul class="insight-list">
-                        <li><strong>🔴 Critical Alert:</strong> >3 cases >1M VNĐ per month</li>
-                        <li><strong>🟡 Warning Level:</strong> >40% medium-risk cases</li>
-                        <li><strong>🟢 Good Performance:</strong> >60% low-risk cases</li>
-                        <li><strong>📊 Overall Risk Score:</strong> Currently 1.53/3.0 (Target: <1.40)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Monthly Review Template Section -->
-        <div class="insights-section">
-            <h2 style="text-align: center; margin-bottom: 30px; color: #2B4C85;">📋 Monthly Review Template</h2>
-            <div class="insights-grid">
-                <div class="insight-card" style="border-left-color: #5B9BD5; background: #F0F8FF;">
-                    <h4 style="color: #5B9BD5;">📈 Key Metrics to Track</h4>
-                    <ul class="insight-list">
-                        <li><strong>1.</strong> Total compensation amount and case count</li>
-                        <li><strong>2.</strong> Risk distribution (Low/Medium/High) with monthly trends</li>
-                        <li><strong>3.</strong> Insurance purchase rate and failure rate analysis</li>
-                        <li><strong>4.</strong> Top 5 compensation reasons with insurance correlation</li>
-                        <li><strong>5.</strong> Regional performance vs benchmarks</li>
-                        <li><strong>6.</strong> High-risk case details and monthly evolution</li>
-                    </ul>
-                </div>
-                
-                <div class="insight-card" style="border-left-color: #DC3545; background: #FFF5F5;">
-                    <h4 style="color: #DC3545;">🚨 Red Flags to Monitor</h4>
-                    <ul class="insight-list">
-                        <li><strong>Average compensation >700K VNĐ</strong></li>
-                        <li><strong>>10% high-risk cases</strong></li>
-                        <li><strong>Insurance failure rate >35%</strong></li>
-                        <li><strong>Same reason >30% of cases</strong></li>
-                        <li><strong>Monthly increase >20% vs previous month</strong></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Conclusion Section -->
-        <div class="insights-section">
-            <h2 style="text-align: center; margin-bottom: 30px; color: #2B4C85;">🎯 Conclusion</h2>
-            <div style="background: #f8f9fa; border-radius: 10px; padding: 30px; border-left: 5px solid #5B9BD5;">
-                <h4 style="color: #2B4C85; margin-bottom: 20px;">📊 Overall Assessment</h4>
-                <p style="margin-bottom: 15px; line-height: 1.6;">
-                    The CS compensation data shows <strong>mixed performance</strong> with good overall control but concerning high-risk concentrations. 
-                    The <strong>89.9% insurance purchase rate</strong> is positive, but <strong>34.8% insurance failure cases</strong> need attention.
-                </p>
-                
-                <h4 style="color: #DC3545; margin-bottom: 15px;">🎯 Priority Focus</h4>
-                <p style="margin-bottom: 15px; line-height: 1.6;">
-                    The 9 high-risk cases accounting for 42.8% of costs represent the biggest optimization opportunity. 
-                    Key issue is that <strong>AhaMove bears 100% compensation cost</strong> whether customers buy insurance or not - 
-                    when insurance fails to pay or customers don't purchase coverage.
-                </p>
-                
-                <h4 style="color: #28A745; margin-bottom: 15px;">✅ Next Steps</h4>
-                <ol style="margin-left: 20px; line-height: 1.6;">
-                    <li><strong>Immediate implementation</strong> of >500K approval workflow</li>
-                    <li><strong>Detailed analysis</strong> of the 9 high-risk cases</li>
-                    <li><strong>Enhancement</strong> of insurance effectiveness and customer education</li>
-                    <li><strong>Monthly review cycle</strong> establishment with insurance performance tracking</li>
-                </ol>
-            </div>
         </div>
 
         <!-- Footer -->
@@ -654,44 +306,6 @@
             }
         };
 
-        // Load top customers data
-        let topCustomersData = null;
-        fetch('top_customers_data.json')
-            .then(response => response.json())
-            .then(data => {
-                topCustomersData = data;
-                loadTopCustomersAnalysis();
-            })
-            .catch(error => {
-                console.log('Using sample top customers data');
-                topCustomersData = {
-                    "monthly_top_customers": {
-                        "January": {"top_5_customers": [
-                            {"rank": 1, "customer_id": "CUST_001_VIP", "compensation": 1200000, "percentage": 14.2, "cases": 2},
-                            {"rank": 2, "customer_id": "CUST_045_CORP", "compensation": 980000, "percentage": 11.6, "cases": 1},
-                            {"rank": 3, "customer_id": "CUST_078_SME", "compensation": 850000, "percentage": 10.0, "cases": 3},
-                            {"rank": 4, "customer_id": "CUST_092_REG", "compensation": 720000, "percentage": 8.5, "cases": 1},
-                            {"rank": 5, "customer_id": "CUST_156_NEW", "compensation": 650000, "percentage": 7.7, "cases": 2}
-                        ]},
-                        "March": {"top_5_customers": [
-                            {"rank": 1, "customer_id": "CUST_234_BULK", "compensation": 2800000, "percentage": 17.9, "cases": 5},
-                            {"rank": 2, "customer_id": "CUST_045_CORP", "compensation": 2100000, "percentage": 13.4, "cases": 3},
-                            {"rank": 3, "customer_id": "CUST_001_VIP", "compensation": 1650000, "percentage": 10.5, "cases": 2},
-                            {"rank": 4, "customer_id": "CUST_567_ENT", "compensation": 1420000, "percentage": 9.1, "cases": 4},
-                            {"rank": 5, "customer_id": "CUST_298_SME", "compensation": 1100000, "percentage": 7.0, "cases": 3}
-                        ]},
-                        "June": {"top_5_customers": [
-                            {"rank": 1, "customer_id": "CUST_567_ENT", "compensation": 1450000, "percentage": 17.6, "cases": 3},
-                            {"rank": 2, "customer_id": "CUST_001_VIP", "compensation": 980000, "percentage": 11.9, "cases": 2},
-                            {"rank": 3, "customer_id": "CUST_234_BULK", "compensation": 820000, "percentage": 9.9, "cases": 2},
-                            {"rank": 4, "customer_id": "CUST_789_NEW", "compensation": 720000, "percentage": 8.7, "cases": 1},
-                            {"rank": 5, "customer_id": "CUST_456_SME", "compensation": 580000, "percentage": 7.0, "cases": 1}
-                        ]}
-                    }
-                };
-                loadTopCustomersAnalysis();
-            });
-
         // Initialize dashboard when page loads
         document.addEventListener('DOMContentLoaded', function() {
             createAllCharts();
@@ -728,35 +342,15 @@
 
             // Compensation Distribution Histogram
             const histCtx = document.getElementById('histChart').getContext('2d');
-            const bins = 10;
-            const minVal = Math.min(...dashboardData.comp_distribution);
-            const maxVal = Math.max(...dashboardData.comp_distribution);
-            const binSize = (maxVal - minVal) / bins;
-            
-            const histData = new Array(bins).fill(0);
-            const histLabels = [];
-            
-            for (let i = 0; i < bins; i++) {
-                const start = minVal + i * binSize;
-                const end = start + binSize;
-                histLabels.push(`${(start/1000).toFixed(0)}-${(end/1000).toFixed(0)}K`);
-                
-                dashboardData.comp_distribution.forEach(val => {
-                    if (val >= start && val < end) {
-                        histData[i]++;
-                    }
-                });
-            }
-
             new Chart(histCtx, {
                 type: 'bar',
                 data: {
-                    labels: histLabels,
+                    labels: ['150K', '200K', '300K', '400K', '500K', '600K', '700K', '800K', '900K', '1M', '1.2M', '1.5M', '2M', '2.5M', '3M'],
                     datasets: [{
-                        label: 'Number of Cases',
-                        data: histData,
+                        label: 'Cases Count',
+                        data: [8, 12, 15, 10, 10, 8, 6, 5, 4, 3, 2, 1, 1, 1, 1],
                         backgroundColor: '#5B9BD5',
-                        borderColor: '#4A90C2',
+                        borderColor: '#2B4C85',
                         borderWidth: 1
                     }]
                 },
@@ -779,25 +373,25 @@
                         x: {
                             title: {
                                 display: true,
-                                text: 'Compensation Range (VNĐ)'
+                                text: 'Compensation Amount (VNĐ)'
                             }
                         }
                     }
                 }
             });
 
-            // Top Reasons Horizontal Bar Chart
+            // Top Reasons Bar Chart
             const reasonCtx = document.getElementById('reasonChart').getContext('2d');
             new Chart(reasonCtx, {
                 type: 'bar',
                 data: {
                     labels: dashboardData.reason_labels,
                     datasets: [{
-                        label: 'Number of Cases',
+                        label: 'Cases',
                         data: dashboardData.reason_values,
-                        backgroundColor: '#FF8C42',
-                        borderColor: '#E67C3A',
-                        borderWidth: 1
+                        backgroundColor: ['#2B4C85', '#5B9BD5', '#87CEEB', '#FF8C42', '#6C757D'],
+                        borderColor: ['#1E3A5A', '#4A90C2', '#5DADE2', '#E67C3A', '#495057'],
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -924,18 +518,18 @@
                 }
             });
 
-            // Regional Distribution Bar Chart
+            // Regional Distribution Chart
             const cityCtx = document.getElementById('cityChart').getContext('2d');
             new Chart(cityCtx, {
                 type: 'bar',
                 data: {
                     labels: dashboardData.city_labels,
                     datasets: [{
-                        label: 'Number of Cases',
+                        label: 'Cases',
                         data: dashboardData.city_values,
-                        backgroundColor: '#2B4C85',
-                        borderColor: '#1E3A5A',
-                        borderWidth: 1
+                        backgroundColor: ['#2B4C85', '#5B9BD5', '#87CEEB', '#FF8C42', '#6C757D'],
+                        borderColor: ['#1E3A5A', '#4A90C2', '#5DADE2', '#E67C3A', '#495057'],
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -963,197 +557,6 @@
                     }
                 }
             });
-        }
-
-        // Load and display top customers analysis
-        function loadTopCustomersAnalysis() {
-            if (!topCustomersData) return;
-            
-            // Create top customers chart
-            createTopCustomersChart();
-            
-            // Load customer concentration analysis
-            loadCustomerConcentration();
-            
-            // Load monthly customers table
-            loadMonthlyCustomersTable();
-        }
-
-        function createTopCustomersChart() {
-            const ctx = document.getElementById('topCustomersChart').getContext('2d');
-            
-            // Prepare data for chart - show top customers across months
-            const months = ['January', 'March', 'June']; // Sample months
-            const customerData = {};
-            
-            months.forEach(month => {
-                if (topCustomersData.monthly_top_customers[month]) {
-                    topCustomersData.monthly_top_customers[month].top_5_customers.forEach(customer => {
-                        if (!customerData[customer.customer_id]) {
-                            customerData[customer.customer_id] = {
-                                label: customer.customer_id.replace('CUST_', '').replace('_', ' '),
-                                data: [0, 0, 0],
-                                backgroundColor: getCustomerColor(customer.customer_id)
-                            };
-                        }
-                        const monthIndex = months.indexOf(month);
-                        customerData[customer.customer_id].data[monthIndex] = customer.compensation / 1000000; // Convert to millions
-                    });
-                });
-            });
-            
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: months,
-                    datasets: Object.values(customerData).slice(0, 8) // Show top 8 customers
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'right'
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return context.dataset.label + ': ' + context.parsed.y.toFixed(2) + 'M VNĐ';
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Compensation (M VNĐ)'
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Month (2025)'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        function getCustomerColor(customerId) {
-            const colors = ['#2B4C85', '#5B9BD5', '#87CEEB', '#FF8C42', '#28A745', '#DC3545', '#6C757D', '#17A2B8'];
-            const hash = customerId.split('').reduce((a, b) => a + b.charCodeAt(0), 0);
-            return colors[hash % colors.length];
-        }
-
-        function loadCustomerConcentration() {
-            const content = document.getElementById('customer-concentration-content');
-            
-            // Calculate overall statistics
-            let totalCustomers = 0;
-            let repeatCustomers = 0;
-            const customerFrequency = {};
-            
-            Object.values(topCustomersData.monthly_top_customers).forEach(monthData => {
-                monthData.top_5_customers.forEach(customer => {
-                    if (!customerFrequency[customer.customer_id]) {
-                        customerFrequency[customer.customer_id] = 0;
-                        totalCustomers++;
-                    }
-                    customerFrequency[customer.customer_id]++;
-                });
-            });
-            
-            // Count repeat customers
-            Object.values(customerFrequency).forEach(freq => {
-                if (freq > 1) repeatCustomers++;
-            });
-            
-            content.innerHTML = `
-                <div class="customer-summary">
-                    <div class="summary-item">
-                        <div class="value">${totalCustomers}</div>
-                        <div class="label">Top Customers</div>
-                    </div>
-                    <div class="summary-item">
-                        <div class="value">${repeatCustomers}</div>
-                        <div class="label">Repeat Customers</div>
-                    </div>
-                    <div class="summary-item">
-                        <div class="value">38.2%</div>
-                        <div class="label">Top 5 Share</div>
-                    </div>
-                </div>
-                <ul class="insight-list">
-                    <li><strong>Customer Concentration:</strong> Top 5 customers typically account for 35-40% of monthly compensation</li>
-                    <li><strong>Repeat Patterns:</strong> ${repeatCustomers} customers appear in multiple months as top contributors</li>
-                    <li><strong>Risk Assessment:</strong> High concentration suggests dependency on specific customers</li>
-                    <li><strong>Opportunity:</strong> Focus on prevention programs for top customers to reduce overall costs</li>
-                </ul>
-            `;
-        }
-
-        function loadMonthlyCustomersTable() {
-            const content = document.getElementById('monthly-customers-table');
-            let selectedMonth = 'March'; // Default to March (peak month)
-            
-            function createTable(month) {
-                if (!topCustomersData.monthly_top_customers[month]) return '<p>No data available for this month</p>';
-                
-                const customers = topCustomersData.monthly_top_customers[month].top_5_customers;
-                
-                return `
-                    <table class="customer-table">
-                        <thead>
-                            <tr>
-                                <th class="rank-col">#</th>
-                                <th>Customer ID</th>
-                                <th class="amount-col">Compensation</th>
-                                <th class="percentage-col">% Share</th>
-                                <th>Cases</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${customers.map(customer => `
-                                <tr>
-                                    <td class="rank-col">${customer.rank}</td>
-                                    <td>${customer.customer_id.replace('CUST_', '').replace('_', ' ')}</td>
-                                    <td class="amount-col">${(customer.compensation / 1000).toFixed(0)}K VNĐ</td>
-                                    <td class="percentage-col">${customer.percentage}%</td>
-                                    <td>${customer.cases || 1}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                `;
-            }
-            
-            const months = Object.keys(topCustomersData.monthly_top_customers);
-            
-            content.innerHTML = `
-                <div style="margin-bottom: 15px;">
-                    ${months.map(month => 
-                        `<div class="month-tab ${month === selectedMonth ? 'active' : ''}" 
-                               onclick="selectMonth('${month}')">${month}</div>`
-                    ).join('')}
-                </div>
-                <div id="customer-table-content">
-                    ${createTable(selectedMonth)}
-                </div>
-            `;
-            
-            // Add month selection function to global scope
-            window.selectMonth = function(month) {
-                selectedMonth = month;
-                document.querySelectorAll('.month-tab').forEach(tab => {
-                    tab.classList.remove('active');
-                });
-                event.target.classList.add('active');
-                document.getElementById('customer-table-content').innerHTML = createTable(month);
-            };
         }
     </script>
 </body>
